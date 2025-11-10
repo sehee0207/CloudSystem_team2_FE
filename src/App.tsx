@@ -31,13 +31,11 @@ function App() {
 
   return (
     <>
-      <Navbar
-        onGetStartedClick={handleGetStartedClick}
-      />
+      <Navbar onGetStartedClick={handleGetStartedClick} />
       <main>
         {/* <div className="bg-[url(https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/hero/gradientBackground.png)] text-sm text-gray-500"> */}
         <div className="text-sm text-gray-500">
-          <Hero />
+          <Hero confirmationEmail={handleHeroSubscribe} />
         </div>
         <Features />
       </main>

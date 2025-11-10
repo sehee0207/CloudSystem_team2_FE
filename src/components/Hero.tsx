@@ -1,33 +1,33 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import BackgroundImage from '../assets/gradient.png';
 
-export function Hero() {
+interface HeroProps {
+  confirmationEmail: (email: string) => void;
+}
+
+export function Hero({confirmationEmail} : HeroProps) {
+  const emailRegEx = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
   const [email, setEmail] = useState("");
-  const [submittedEmail, setSubmittedEmail] = useState("");
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const handleSubscribe = () => {
-    if (email) {
-      setSubmittedEmail(email);
-      setIsDialogOpen(true);
-      setEmail("");
+    if (!email || !emailRegEx.test(email)) {
+      setIsError(true);
+       return;
     }
+
+    confirmationEmail(email);
+    setEmail("");
+    setIsError(false);
   };
 
   return (
     <>
       <div
-        className="min-h-screen flex flex-col items-center justify-center pb-15 px-4 text-center bg-center bg-no-repeat bg-contain bg-center"
-        style={{backgroundImage: `url(${BackgroundImage})`, backgroundRepeat: "no-repeat", backgroundSize: "contain"}}
+        className="min-h-screen flex flex-col items-center justify-center pb-15 px-4 text-center bg-center bg-no-repeat bg-cover md:bg-contain"
+        style={{backgroundImage: `url(${BackgroundImage})`}}
       >
         <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl text-gray-800">
           Bit-Bite
@@ -38,7 +38,7 @@ export function Hero() {
         <p className="text-center mt-6 px-4 max-w-2xl mx-auto">
           매일 한입, CS 지식을 설명하는 습관을 들여보세요!
         </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8 w-full max-w-md mx-auto">
+        <div className="flex flex-col items-center justify-center gap-4 pt-8 w-full max-w-md mx-auto">
           <div className="relative w-full">
             <Input
               type="email"
@@ -56,19 +56,14 @@ export function Hero() {
               구독
             </Button>
           </div>
+
+          <div className="h-6 w-full"> 
+          { isError && (
+            <div className="text-xs text-red-500 w-full">올바른 이메일 주소를 입력해주세요.</div> 
+          )}
+          </div>
         </div>
       </div>
-
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>구독 신청 완료!</DialogTitle>
-            <DialogDescription className="pt-4">
-              다음 이메일로 구독이 신청되었습니다: <strong>{submittedEmail}</strong>
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
     </>
   );
 }
