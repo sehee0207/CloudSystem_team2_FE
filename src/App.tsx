@@ -6,17 +6,10 @@ import { EmailInputDialog } from "@/components/EmailInputDialog";
 import { SubscriptionConfirmationDialog } from "@/components/SubscriptionConfirmationDialog";
 
 function App() {
-  // State for mobile menu
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   // State for dialogs
   const [isEmailInputDialogOpen, setIsEmailInputDialogOpen] = useState(false);
   const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState("");
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
 
   // Handler to open the email input dialog (from navbar)
   const handleGetStartedClick = () => {
@@ -39,11 +32,11 @@ function App() {
   return (
     <>
       <Navbar
-        toggleMenu={toggleMenu}
         onGetStartedClick={handleGetStartedClick}
       />
       <main>
-        <div className="bg-[url(https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/hero/gradientBackground.png)] text-sm text-gray-500">
+        {/* <div className="bg-[url(https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/hero/gradientBackground.png)] text-sm text-gray-500"> */}
+        <div className="text-sm text-gray-500">
           <Hero />
         </div>
         <Features />

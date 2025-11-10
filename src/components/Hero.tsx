@@ -8,6 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import BackgroundImage from '../assets/gradient.png';
 
 export function Hero() {
   const [email, setEmail] = useState("");
@@ -24,15 +25,18 @@ export function Hero() {
 
   return (
     <>
-      <div className="min-h-screen flex flex-col items-center justify-center px-4 text-center">
+      <div
+        className="min-h-screen flex flex-col items-center justify-center pb-15 px-4 text-center bg-center bg-no-repeat bg-contain bg-center"
+        style={{backgroundImage: `url(${BackgroundImage})`, backgroundRepeat: "no-repeat", backgroundSize: "contain"}}
+      >
         <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl text-gray-800">
           Bit-Bite
         </h1>
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800">
-          매일 한입, CS 지식을 설명하는 습관
+          
         </h1>
         <p className="text-center mt-6 px-4 max-w-2xl mx-auto">
-          개발자 및 취준생을 위한 AI 기반 CS 설명 훈련 서비스
+          매일 한입, CS 지식을 설명하는 습관을 들여보세요!
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8 w-full max-w-md mx-auto">
           <div className="relative w-full">
