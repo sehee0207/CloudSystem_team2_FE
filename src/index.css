@@ -3,10 +3,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@theme{
-  --color-main: #A8D9F0;
-}
-
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -79,17 +75,10 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #f9f9f9;
   cursor: pointer;
   transition: border-color 0.25s;
   color: #000000;
-}
-button:hover {
-  border-color: #A8D9F0;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
 @media (prefers-color-scheme: light) {
@@ -106,6 +95,7 @@ button:focus-visible {
 }
 
 @theme inline {
+  --color-main: #A8D9F0;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

@@ -5,9 +5,9 @@ interface NavbarProps {
 export function Navbar({ onGetStartedClick }: NavbarProps) {
   return (
     <nav className="sticky top-0 z-50 flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 font-medium bg-white/80 backdrop-blur-md">
-      <div className="text-m">BitBite</div>
+      <div className="text-2xl text-gray-800">BitBite</div>
 
-      <button className="group flex items-center gap-2" onClick={onGetStartedClick}>
+      <button className="group flex items-center gap-2 text-" onClick={onGetStartedClick}>
         시작하기
         <svg
           className="group-hover:translate-x-1 transition pt-0.5"
