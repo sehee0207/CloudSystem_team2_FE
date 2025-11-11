@@ -6,7 +6,7 @@ const features = [
       </svg>
     ),
     title: "로그인 없는 간단한 사용",
-    description: "계정 생성의 번거로움 없이 이메일 구독 신청을 통해 바로 서비스를 이용해 보세요!",
+    description: "계정 생성의 번거로움 없이 \n이메일 구독 신청을 통해 바로 서비스를 이용해 보세요!",
   },
   {
     icon: (
@@ -15,7 +15,7 @@ const features = [
       </svg>
     ),
     title: "AI 기반, 선택 분야에 맞는 질문 생성",
-    description: "평일 오전 8시, AI/클라우드/CS 중 1개의 질문을 받아보세요!",
+    description: "평일 오전 8시, \nAI/클라우드/CS 중 1개의 질문을 받아보세요!",
   },
   {
     icon: (
@@ -24,7 +24,7 @@ const features = [
       </svg>
     ),
     title: "답변 확인 및 피드백 제공",
-    description: "메일의 링크를 통해 접근하여 제한 시간 내에 오늘의 질문에 대한 답변을 입력하세요! 인공지능이 답변을 분석하여 구체적인 피드백을 제공합니다.",
+    description: "메일의 링크를 통해\n제한 시간 내에 오늘의 질문에 대한 답변을 입력하세요!\n인공지능이 답변을 분석하여 구체적인 피드백을 제공합니다.",
   },
 ];
 
@@ -32,19 +32,32 @@ export function Features() {
   return (
     <section className="w-full min-h-[calc(100vh-5rem)] py-12 md:py-24 lg:py-32">
       <div className="container px-4 md:px-6 mx-auto">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl text-gray-800">
-            Bit-Bite 주요 기능
+        <div className="flex flex-col items-center justify-center space-y-2 g-10 text-center">
+          <h2 className="text-4xl text-gray-800">
+            Bit-Bite
+          </h2>
+          <h2 className="text-2xl font-bold text-gray-800 tracking-tighter">
+            주요 기능
           </h2>
         </div>
-        <div className="mx-auto grid max-w-7xl items-stretch gap-8 py-12 lg:grid-cols-3">
+        <div className="mx-auto grid max-w-7xl items-stretch gap-8 py-12 md:grid-cols-3">
           {features.map((feature) => (
-            <div key={feature.title} className="grid gap-4 p-6 rounded-lg shadow-lg bg-white">
+            <div
+              key={feature.title}
+              className="grid gap-4 p-6 rounded-lg shadow-lg bg-white transition-transform duration-300 hover:-translate-y-1 cursor-pointer"
+            >
               <div className="flex items-center justify-center h-12 w-12 rounded-full bg-main text-white">
                 <span className="h-6 w-6">{feature.icon}</span>
               </div>
-              <h3 className="text-lg font-bold text-gray-800">{feature.title}</h3>
-              <p className="text-sm text-gray-500">{feature.description}</p>
+              <h3 className="text-lg font-bold text-gray-800 tracking-tighter">{feature.title}</h3>
+              <p className="text-sm text-gray-500">
+                {feature.description.split('\n').map((line, i, array) => (
+                  <>
+                    {line}
+                    {i < array.length - 1 && <br />}
+                  </>
+                ))}
+              </p>
             </div>
           ))}
         </div>

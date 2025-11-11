@@ -2,26 +2,14 @@ import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { Features } from "@/components/Features";
-import { EmailInputDialog } from "@/components/EmailInputDialog";
 import { SubscriptionConfirmationDialog } from "@/components/SubscriptionConfirmationDialog";
+import { SelectFieldDialog } from "./components/SelectFieldDialog";
 
 function App() {
   // State for dialogs
-  const [isEmailInputDialogOpen, setIsEmailInputDialogOpen] = useState(false);
   const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] = useState(false);
+  const [isSelectFieldDialogOpen, setIsSelectFieldDialogOpen] = useState(false);
   const [submittedEmail, setSubmittedEmail] = useState("");
-
-  // Handler to open the email input dialog (from navbar)
-  const handleGetStartedClick = () => {
-    setIsEmailInputDialogOpen(true);
-  };
-
-  // Handler for when email is submitted from the EmailInputDialog
-  const handleEmailDialogSubmit = (email: string) => {
-    setSubmittedEmail(email);
-    setIsEmailInputDialogOpen(false);
-    setIsConfirmationDialogOpen(true);
-  };
 
   // Handler for when email is submitted from the Hero section input
   const handleHeroSubscribe = (email: string) => {
@@ -29,25 +17,38 @@ function App() {
     setIsConfirmationDialogOpen(true);
   };
 
+  const handleConfirmationSuccess = () => {
+    setIsConfirmationDialogOpen(false);
+    setIsSelectFieldDialogOpen(true);
+  };
+
+  const handleConfirmationDialogClose = (open: boolean) => {
+    setIsConfirmationDialogOpen(open);
+    if (!open) {
+      setSubmittedEmail(""); // Clear email when dialog closes
+    }
+  };
+
   return (
     <>
-      <Navbar onGetStartedClick={handleGetStartedClick} />
+      <Navbar />
       <main>
-        {/* <div className="bg-[url(https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/hero/gradientBackground.png)] text-sm text-gray-500"> */}
         <div className="text-sm text-gray-500">
           <Hero confirmationEmail={handleHeroSubscribe} />
         </div>
         <Features />
       </main>
 
-      <EmailInputDialog
-        isOpen={isEmailInputDialogOpen}
-        onOpenChange={setIsEmailInputDialogOpen}
-        onEmailSubmit={handleEmailDialogSubmit}
-      />
       <SubscriptionConfirmationDialog
         isOpen={isConfirmationDialogOpen}
-        onOpenChange={setIsConfirmationDialogOpen}
+        onOpenChange={handleConfirmationDialogClose}
+        email={submittedEmail}
+        onConfirm={handleConfirmationSuccess}
+      />
+
+      <SelectFieldDialog
+        isOpen={isSelectFieldDialogOpen}
+        onOpenChange={setIsSelectFieldDialogOpen}
         email={submittedEmail}
       />
     </>
