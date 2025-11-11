@@ -13,9 +13,13 @@ export function Hero({confirmationEmail} : HeroProps) {
   const [isError, setIsError] = useState(false);
 
   const handleSubscribe = () => {
-    if (!email || !emailRegEx.test(email)) {
+    if(!email){
+      setIsError(false);
+      return;
+    }
+    if (!emailRegEx.test(email)) {
       setIsError(true);
-       return;
+      return;
     }
 
     confirmationEmail(email);
@@ -29,21 +33,21 @@ export function Hero({confirmationEmail} : HeroProps) {
         className="min-h-screen flex flex-col items-center justify-center pb-15 px-4 text-center bg-center bg-no-repeat bg-cover md:bg-contain"
         style={{backgroundImage: `url(${BackgroundImage})`}}
       >
-        <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl text-gray-800">
+        <h1 className="text-3xl text-2xl text-gray-800">
           Bit-Bite
         </h1>
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800">
           
         </h1>
         <p className="text-center mt-6 px-4 max-w-2xl mx-auto">
-          매일 한입, CS 지식을 설명하는 습관을 들여보세요!
+          <strong>매일 한입,</strong> CS 지식을 설명하는 습관을 들여보세요!
         </p>
         <div className="flex flex-col items-center justify-center gap-4 pt-8 w-full max-w-md mx-auto">
           <div className="relative w-full">
             <Input
               type="email"
               placeholder="이메일 주소 입력하고 구독 신청하기"
-              className="w-full pr-24 py-6"
+              className="w-full pr-24 py-6 border-white text-sm"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSubscribe()}
