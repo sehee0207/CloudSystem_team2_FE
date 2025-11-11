@@ -1,10 +1,12 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
 
 @custom-variant dark (&:is(.dark *));
 
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -78,7 +80,7 @@ button {
   background-color: #f9f9f9;
   cursor: pointer;
   transition: border-color 0.25s;
-  color: #000000;
+  color: #323232;
 }
 
 @media (prefers-color-scheme: light) {
